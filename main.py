@@ -4,37 +4,37 @@ from random import randint
 pygame.init()
 # создание окна игры
 clock = pygame.time.Clock()
-back = (215, 215, 215)  # цвет фона (background)
+back: tuple = (215, 215, 215)  # цвет фона (background)
 mw = pygame.display.set_mode((500, 500))  # окно программы (main window)
 mw.fill(back)
 # цвета
-BLACK = (0, 0, 0)
-LIGHT_BLUE = (100, 200, 155)
+BLACK: tuple = (0, 0, 0)
+LIGHT_BLUE: tuple = (100, 200, 155)
 
 
 class TextArea:
-    def __init__(self, x=0, y=0, width=10, height=10, color=None):
+    def __init__(self, x: int=0, y: int=0, width: int=10, height: int=10, color=None):
         self.rect = pygame.Rect(x, y, width, height)
         self.fill_color = color
         # возможные надписи
         self.titles = list()
 
     # добавить текст в список возможных надписей
-    def add_text(self, text):
+    def add_text(self, text: str):
         self.titles.append(text)
 
     # установить текст
-    def set_text(self, number=0, fsize=12, text_color=BLACK):
+    def set_text(self, number:str=0, fsize: str=12, text_color: tuple=BLACK):
         self.text = self.titles[number]
         self.image = pygame.font.Font(None, fsize).render(self.text, True, text_color)
 
     # отрисовка прямоугольника с текстом
-    def draw(self, shift_x=0, shift_y=0):
+    def draw(self, shift_x: int=0, shift_y: int=0):
         pygame.draw.rect(mw, self.fill_color, self.rect)
         mw.blit(self.image, (self.rect.x + shift_x, self.rect.y + shift_y))
-    # создание карточек
+    
 
-
+# создание карточек
 quest_card = TextArea(120, 100, 290, 70, LIGHT_BLUE)
 quest_card.add_text('Вопрос')
 quest_card.add_text('Столица Еквадора:')
